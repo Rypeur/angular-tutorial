@@ -1,9 +1,20 @@
 <div *ngFor="let tweet of tweets" class="tweet-container">
-  <div class="tweet-header">
-    <strong>{{ tweet.user }}</strong>
-    <small class="time">{{ tweet.created_at | date:'short' }}</small>
-  </div>
-  <div class="tweet-content">
-    {{ tweet.text }}
-  </div>
+    <div class="tweet-header">
+        <strong>{{ tweet.user }}</strong>
+        <small class="time">{{ tweet.created_at | timeAgo }}</small>
+    </div>
+    <div class="tweet-content">
+        {{ tweet.text }}
+
+    </div>
+
+    <i class="far fa-arrow-alt-circle-up" (click)="onLike(tweet, like,dislike)" (mouseenter)="onHover(like)" #like ></i>
+    <i class="far fa-arrow-alt-circle-down" (click)="onDislike(tweet, dislike,like)" (mouseenter)="onHover(like)" #dislike ></i>
+    {{tweet.favoriteCount}}
+
+
+</div>
+<div class="tweet-container">
+    <label><textarea #tweetText></textarea></label>
+    <button (click)="onSave(tweetText.value)">Tweet</button>
 </div>
